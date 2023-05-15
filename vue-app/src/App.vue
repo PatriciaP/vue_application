@@ -29,21 +29,22 @@
           </td>
         </tr>
       </tbody>
-      <tfoot>
-        <tr>
-          <td>Balance:</td>
-          <td></td>
-          <td v-bind:class="{ 'negative': calculateBalance() < 0, 'positive': calculateBalance() > 0 }">
-            {{
-              calculateBalance().toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-              })
-            }}</td>
-          <td></td>
-        </tr>
-      </tfoot>
+
     </table>
+     <tfoot>
+            <tr>
+              <td>Balance:</td>
+              <td></td>
+              <td v-bind:class="{ 'negative': calculateBalance() < 0, 'positive': calculateBalance() > 0 }">
+                {{
+                  calculateBalance().toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                  })
+                }}</td>
+              <td></td>
+            </tr>
+          </tfoot>
 
     <div v-if="!editingTransaction" class="form-container">
       <h2>Add Transaction</h2>
@@ -151,151 +152,177 @@ export default {
 
 <style>
 body {
-font-family: sans-serif;
-margin: 0;
+  font-family: sans-serif;
+  margin: 0;
 }
 
 h1 {
-text-align: center;
-margin: 1rem 0;
+  text-align: center;
+  margin: 1rem 0;
 }
 
 .container {
-max-width: 800px;
-margin: 0 auto;
-padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .form-container {
-margin-bottom: 20px;
-display: flex;
-flex-direction: column;
-align-items: flex-start;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .form-container h2 {
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 label {
-display: block;
-margin-bottom: 10px;
+  display: block;
+  margin-bottom: 5px;
+  flex-direction: column;
+  margin-top: 1rem;
 }
 
 input[type="date"],
 input[type="text"],
 input[type="number"] {
-display: block;
-width: 100%;
-padding: 10px;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box;
-margin-bottom: 20px;
-font-size: 16px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
 button {
-margin-top: 1rem;
-padding: 0.5rem 1rem;
-border: none;
-border-radius: 4px;
-color: white;
-font-weight: bold;
-cursor: pointer;
-display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .btn-primary {
-background-color: #0574eb;
-color: #fff;
-border: none;
-margin-right: 10px;
+  background-color: #0574eb;
+  color: #fff;
+  border: none;
+  margin-right: 10px;
 }
 
 button.btn-primary:hover {
-background-color: #046bdaa1;
+  background-color: #046bdaa1;
 }
 
 .btn-delete {
-background-color: #dc143c;
-margin-left: 0.5rem;
+  background-color: #dc143c;
+  margin-left: 0.5rem;
 }
 
 button.btn-delete:hover {
-background-color: #e60e39b6;
+  background-color: #e60e39b6;
 }
 
 form {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-margin-bottom: 2rem;
-}
-
-label {
-display: flex;
-flex-direction: column;
-margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2rem;
 }
 
 input {
-padding: 0.5rem;
-border: none;
-border-bottom: 1px solid #ccc;
-width: 100%;
-margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
 table {
-display: block;
-max-width: 100%;
-max-height: 600px;
-overflow-y: scroll;
-scroll-behavior: smooth;
-table-layout: fixed;
+  display: block;
+  max-width: 100%;
+  max-height: 600px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  table-layout: fixed;
 }
 
 th,
 td {
-padding: 0.5rem;
-text-align: left;
-border-bottom: 1px solid #ccc;
-min-width: 180px;
-font-size: 14px;
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  min-width: 180px;
+  font-size: 14px;
 }
 
 th {
-background-color: #f2f2f2;
-font-weight: normal;
-resize: horizontal;
-min-width: 100px;
+  background-color: #f2f2f2;
+  font-weight: normal;
+  resize: horizontal;
+  min-width: 100px;
 }
 
 .negative {
-color: #dc143c;
+  color: #dc143c;
 }
 
 .positive {
-color: #3cb371;
+  color: #3cb371;
 }
 
 tfoot td:first-child {
-font-weight: bold;
+  font-weight: bold;
 }
 
-/* New Style */
-.button-group {
-display: inline-block;
+.error {
+  color: red;
+  font-style: italic;
 }
 
-.btn-edit {
-background-color: #ffc107;
-margin-right: 10px;
+.form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-button.btn-edit:hover {
-background-color: #ffa300;
+.form-group {
+  margin-right: 15px;
+  margin-bottom: 10px;
 }
+
+
+label {
+  display: inline-block;
+  width: 100px;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='date'] {
+  width: 400px;
+}
+
+.form-group label {
+  display: inline-block;
+  width: 100px;
+}
+
+.form-group input[type="date"] {
+  width: 150px;
+}
+
+.form-group input[name="description"] {
+  width: 400px;
+}
+
+.form-group input[name="amount"] {
+  width: 150px;
+}
+
 
 </style>
